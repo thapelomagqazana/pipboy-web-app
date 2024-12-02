@@ -1,0 +1,53 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Press Start 2P', monospace; /* Retro-themed font */
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #000; /* Black background for retro theme */
+    color: #0f0; /* Neon green text for retro theme */
+}
+
+img, picture, video, canvas {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* Custom Reset for Retro Look */
+body {
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect */
+}
