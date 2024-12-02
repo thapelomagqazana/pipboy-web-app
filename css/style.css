@@ -85,6 +85,16 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 2px solid #0f0; /* Highlight active tab */
 }
 
+/* Hide all tab contents by default */
+.tab-content {
+    display: none;
+}
+
+/* Show the active tab content */
+.tab-content.active {
+    display: block;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
