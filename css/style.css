@@ -410,13 +410,17 @@ progress::-moz-progress-bar {
 }
 
 .interactive-map {
+    cursor: grab; /* Indicate draggable content */
     width: 100%;
     height: auto;
     background-color: #000;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Neon glow effect */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Glowing effect */
     border: 2px solid #0f0;
     border-radius: 10px;
-    cursor: pointer;
+}
+
+.interactive-map:active {
+    cursor: grabbing; /* Change cursor when panning */
 }
 
 .map-region {
@@ -435,6 +439,49 @@ progress::-moz-progress-bar {
     font-size: 0.8rem;
     color: #0f0;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+}
+
+/* Radio Section Styling */
+.radio-container {
+    margin: 20px auto;
+    text-align: center;
+    color: #0f0; /* Neon green text for retro theme */
+    font-family: 'Press Start 2P', monospace;
+}
+
+.radio-placeholder {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glowing effect */
+}
+
+.radio-list {
+    list-style: none;
+    padding: 0;
+}
+
+.radio-station {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 2px solid #0f0; /* Neon green border */
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8); /* Retro black background */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.radio-station:hover {
+    background-color: #0f0; /* Neon green highlight */
+    color: #000; /* Invert text color for contrast */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Glowing effect */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.radio-description {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glowing effect */
 }
 
 /* Responsive Design */

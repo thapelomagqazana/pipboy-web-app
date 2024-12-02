@@ -186,4 +186,18 @@ document.addEventListener("DOMContentLoaded", () => {
             `${-transform.x} ${-transform.y} ${500 / transform.scale} ${500 / transform.scale}`
         );
     }
+
+    const stations = document.querySelectorAll(".radio-station");
+    const descriptionElement = document.querySelector(".radio-description");
+
+    stations.forEach((station) => {
+        station.addEventListener("mouseenter", () => {
+            const description = station.getAttribute("data-description");
+            descriptionElement.textContent = description;
+        });
+
+        station.addEventListener("mouseleave", () => {
+            descriptionElement.textContent = "Hover over a station to see its description.";
+        });
+    });
 });
