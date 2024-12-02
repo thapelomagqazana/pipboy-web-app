@@ -13,6 +13,16 @@ html, body {
     background-color: #000; /* Black background for retro theme */
     color: #0f0; /* Neon green text for retro theme */
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Neon glow effect */
+    display: grid;
+    place-items: center;
+}
+
+/* CSS Grid Layout for Container */
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
+    grid-template-columns: 1fr; /* Single column layout */
+    height: 100vh; /* Full viewport height */
 }
 
 img, picture, video, canvas {
@@ -22,6 +32,7 @@ img, picture, video, canvas {
 
 input, button, textarea, select {
     font: inherit;
+    font-family: inherit;
 }
 
 a {
@@ -48,13 +59,13 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-/* Navigation Bar Styling */
-.navbar {
-    background-color: #000; /* Black background for retro theme */
-    border-bottom: 2px solid #0f0; /* Neon green border for emphasis */
-    padding: 10px 20px;
-    position: fixed; /* Fixed at the top */
-    width: 100%;
+/* Header */
+.header {
+    background-color: #000; /* Retro black background */
+    border-bottom: 2px solid #0f0; /* Neon green border */
+    padding: 10px;
+    position: sticky;
+    top: 0;
     z-index: 1000;
 }
 
@@ -77,6 +88,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff; /* Change text to white on hover */
     background-color: rgba(0, 255, 0, 0.2); /* Add a slight glow effect */
     border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5); /* Subtle glowing shadow */
 }
 
 .nav-item.active {
@@ -95,6 +107,34 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+/* Utility Classes */
+.neon-text {
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+}
+
+.neon-border {
+    border: 2px solid #0f0;
+}
+
+/* Main Content */
+.main-content {
+    overflow-y: auto; /* Enable scrolling for long content */
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+}
+
+/* Footer */
+.footer {
+    background-color: #000;
+    border-top: 2px solid #0f0; /* Neon green border */
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    position: sticky;
+    bottom: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
@@ -107,16 +147,53 @@ h1, h2, h3, h4, h5, h6 {
         padding: 15px 20px; /* Increase padding for better touch interaction */
         width: 100%; /* Make the tabs stretch across the width */
         text-align: center; /* Center text for vertical layout */
+        font-size: 1rem;
     }
+
+    .main-content {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    .footer {
+        font-size: 0.7rem; /* Reduce font size for smaller screens */
+        padding: 8px; /* Adjust padding for space efficiency */
+    }
+
+
 }
 
 @media (max-width: 480px) {
-    .navbar {
-        padding: 5px 10px; /* Reduce padding for smaller screens */
+    /* Navigation */
+    .nav-list {
+        flex-direction: column; /* Stack navigation items */
+        gap: 15px; /* Add more spacing between items */
     }
 
     .nav-item {
-        font-size: 1rem; /* Decrease font size for smaller screens */
+        font-size: 0.9rem; /* Reduce font size for compact view */
+        padding: 10px 15px; /* Adjust padding for touch-friendly interaction */
+    }
+
+    /* Header */
+    .header {
+        padding: 8px 10px; /* Reduce header padding */
+    }
+
+    /* Main Content Adjustments */
+    .main-content {
+        padding: 10px; /* Reduce main content padding */
+        gap: 10px; /* Reduce gap between grid items */
+    }
+
+    /* Footer */
+    .footer {
+        font-size: 0.6rem; /* Further reduce font size for footer */
+        padding: 6px; /* Minimize padding */
+    }
+
+    /* Tab Content */
+    .tab-content h1 {
+        font-size: 1.2rem; /* Scale down headings for compact screens */
     }
 }
 
