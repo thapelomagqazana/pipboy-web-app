@@ -253,6 +253,65 @@ progress::-moz-progress-bar {
     opacity: 1;
 }
 
+/* Inventory Section Styling */
+#inventory {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Glowing effect */
+    background-color: rgba(0, 0, 0, 0.8); /* Slight transparency */
+}
+
+/* Inventory Grid Layout */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between items */
+    margin-top: 20px;
+}
+
+/* Inventory Item Styling */
+.inventory-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #0f0; /* Neon green border */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.9); /* Slight transparency */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Glowing effect */
+    text-align: center;
+}
+
+/* Item Icon */
+.item-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* Item Details */
+.item-details {
+    font-family: 'Press Start 2P', monospace; /* Retro font */
+    font-size: 0.8rem;
+    color: #0f0; /* Neon green text */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect */
+}
+
+.item-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.item-weight,
+.item-value {
+    font-size: 0.8rem;
+    margin: 3px 0;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
@@ -291,6 +350,28 @@ progress::-moz-progress-bar {
         font-size: 0.7rem; /* Slightly smaller text for compact view */
         padding: 5px 8px; /* Reduce padding */
         max-width: 180px; /* Constrain width further for smaller screens */
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust grid for smaller screens */
+        gap: 15px;
+    }
+
+    .inventory-item {
+        padding: 8px;
+    }
+
+    .item-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .item-details {
+        font-size: 0.7rem;
+    }
+
+    .item-name {
+        font-size: 0.9rem;
     }
 }
 
@@ -365,6 +446,28 @@ progress::-moz-progress-bar {
         font-size: 0.6rem; /* Further reduce text size */
         padding: 4px 6px; /* Minimal padding for compact view */
         max-width: 160px; /* Constrain width for small screens */
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Narrower items for mobile */
+        gap: 10px;
+    }
+
+    .inventory-item {
+        padding: 5px;
+    }
+
+    .item-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .item-details {
+        font-size: 0.6rem;
+    }
+
+    .item-name {
+        font-size: 0.8rem;
     }
 }
 
