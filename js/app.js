@@ -2,13 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const navItems = document.querySelectorAll('.nav-item');
     const tabContent = document.querySelectorAll('.tab-content');
     const searchBar = document.getElementById("search-bar");
-    const modal = document.getElementById("item-modal");
-    const modalName = modal.querySelector(".item-modal-name");
-    const modalIcon = modal.querySelector(".item-modal-icon");
-    const modalDescription = modal.querySelector(".item-modal-description");
-    const modalWeight = modal.querySelector(".item-modal-weight");
-    const modalValue = modal.querySelector(".item-modal-value");
-    const closeButton = modal.querySelector(".close-button");
     const prevButton = document.getElementById("nav-prev");
     const nextButton = document.getElementById("nav-next");
 
@@ -54,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Navigate to the previous tab
     prevButton.addEventListener("click", () => {
-        const newIndex = activeIndex > 0 ? activeIndex - 1 : tabs.length - 1;
+        const newIndex = activeIndex > 0 ? activeIndex - 1 : tabContent.length - 1;
         updateActiveTab(newIndex);
     });
 
@@ -105,34 +98,56 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Modal Logic
-    function openModal(item) {
-        modalName.textContent = item.getAttribute("data-name");
-        modalIcon.src = item.querySelector("img").src;
-        modalDescription.textContent = `${item.getAttribute("data-name")} is an essential item for your inventory.`;
-        modalWeight.textContent = `Weight: ${item.getAttribute("data-weight")}`;
-        modalValue.textContent = `Value: ${item.getAttribute("data-value")}`;
-        modal.classList.add("visible");
+    const inventoryGrid = document.querySelector(".inventory-grid");
+    const sidePanel = document.getElementById("item-details-panel");
+    const closeButton = document.getElementById("close-panel");
+
+    const nameElement = sidePanel.querySelector(".item-details-name");
+    const iconElement = sidePanel.querySelector(".item-details-icon");
+    const descriptionElement = sidePanel.querySelector(".item-details-description");
+    const weightElement = sidePanel.querySelector(".item-details-weight");
+    const valueElement = sidePanel.querySelector(".item-details-value");
+
+    // Function to show the side panel with item details
+    function showSidePanel(item) {
+        const name = item.getAttribute("data-name");
+        const weight = item.getAttribute("data-weight");
+        const value = item.getAttribute("data-value");
+        const iconSrc = item.querySelector("img").src;
+
+        // Populate side panel with item details
+        nameElement.textContent = name;
+        iconElement.src = iconSrc;
+        descriptionElement.textContent = `${name} is a critical inventory item with unique properties.`;
+        weightElement.textContent = `Weight: ${weight}`;
+        valueElement.textContent = `Value: ${value}`;
+
+        // Show the panel
+        sidePanel.classList.add("visible");
+        sidePanel.classList.remove("hidden");
     }
 
-    function closeModal() {
-        modal.classList.remove("visible");
+    // Function to hide the side panel
+    function hideSidePanel() {
+        sidePanel.classList.remove("visible");
+        sidePanel.classList.add("hidden");
     }
 
-    // Event Delegation for Inventory Items
-    document.querySelector(".inventory-grid").addEventListener("click", (event) => {
+    // Add click listener to inventory items
+    inventoryGrid.addEventListener("click", (event) => {
         const item = event.target.closest(".inventory-item");
-        if (item) openModal(item);
+        if (item) {
+            showSidePanel(item);
+        }
     });
 
-    // Close Modal Events
-    closeButton.addEventListener("click", closeModal);
-    modal.addEventListener("click", (event) => {
-        if (event.target === modal) closeModal();
-    });
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal.classList.contains("visible")) {
-            closeModal();
+    // Add click listener to close button
+    closeButton.addEventListener("click", hideSidePanel);
+
+    // Add listener to hide the panel when clicking outside
+    document.addEventListener("click", (event) => {
+        if (!sidePanel.contains(event.target) && !event.target.closest(".inventory-item")) {
+            hideSidePanel();
         }
     });
 
@@ -227,16 +242,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const stations = document.querySelectorAll(".radio-station");
-    const descriptionElement = document.querySelector(".radio-description");
+    const radioDescriptionElement = document.querySelector(".radio-description");
 
     stations.forEach((station) => {
         station.addEventListener("mouseenter", () => {
             const description = station.getAttribute("data-description");
-            descriptionElement.textContent = description;
+            radioDescriptionElement.textContent = description;
         });
 
         station.addEventListener("mouseleave", () => {
-            descriptionElement.textContent = "Hover over a station to see its description.";
+            radioDescriptionElement.textContent = "Hover over a station to see its description.";
         });
     });
 });

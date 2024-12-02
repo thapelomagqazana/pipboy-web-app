@@ -118,6 +118,13 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: 2px solid #0f0; /* Highlight active tab */
 }
 
+/* Improved Focus Accessibility */
+.nav-item:focus,
+.radio-station:focus {
+    outline: 2px solid #0f0;
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
 /* Hide all tab contents by default */
 .tab-content {
     text-align: center; /* Center-align text for sections */
@@ -379,68 +386,61 @@ progress::-moz-progress-bar {
 }
 
 
-/* Modal Styling */
-.modal {
-    position: fixed;
+/* Side Panel */
+.side-panel {
+    position: fixed; /* Fixed position ensures it's independent of layout */
+    right: 0;
     top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    visibility: hidden; /* Hidden by default */
-    opacity: 0;
-    transition: visibility 0s, opacity 0.3s ease-in-out;
-}
-
-/* Show Modal */
-.modal.visible {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: rgba(0, 0, 0, 0.9); /* Retro black background */
-    border: 2px solid #0f0; /* Neon green border */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Glowing effect */
-    padding: 20px;
-    width: 90%; /* Adjusted for smaller screens */
-    max-width: 500px; /* Limit for larger screens */
-    max-height: 70vh; /* Reduced height to 70% of the viewport */
-    overflow-y: auto; /* Scrollable if content exceeds height */
-    text-align: center;
+    width: 300px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Retro black */
+    border-left: 2px solid #0f0; /* Neon green border */
+    box-shadow: -5px 0 10px rgba(0, 255, 0, 0.5); /* Glowing effect */
     color: #0f0; /* Neon green text */
     font-family: 'Press Start 2P', monospace;
-    position: relative; /* Ensure close button is positioned correctly */
+    padding: 20px;
+    transform: translateX(100%); /* Hidden by default */
+    transition: transform 0.3s ease-in-out; /* Smooth slide-in/out */
+    z-index: 2000; /* Higher than the header */
 }
 
-/* Modal Image Styling */
-.item-modal-icon {
-    width: 50%; /* Image width reduced to 50% of the modal content width */
-    max-width: 150px; /* Set a maximum width for larger screens */
-    height: auto; /* Maintain aspect ratio */
-    margin: 20px auto; /* Add space around the image and center it */
-    display: block; /* Ensure it is centered */
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Add a subtle glow effect */
-    border-radius: 5px; /* Optional: Add rounded corners for aesthetics */
+.side-panel.hidden {
+    transform: translateX(100%);
 }
 
+.side-panel.visible {
+    transform: translateX(0);
+}
 
-/* Close Button */
+.side-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #0f0;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #0f0;
     font-size: 1.5rem;
-    cursor: pointer;
+    color: #0f0;
     background: none;
     border: none;
+    cursor: pointer;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+}
+
+.item-details-icon {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 2px solid #0f0;
+    border-radius: 5px;
+}
+
+.item-details-description,
+.item-details-weight,
+.item-details-value {
+    margin: 10px 0;
 }
 
 /* Hover Effect */
@@ -469,6 +469,7 @@ progress::-moz-progress-bar {
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Glowing effect */
     border: 2px solid #0f0;
     border-radius: 10px;
+    touch-action: pan-x pan-y;
 }
 
 .interactive-map:active {
@@ -542,10 +543,11 @@ progress::-moz-progress-bar {
         flex-direction: column; /* Stack tabs vertically */
         align-items: center; /* Center-align the items */
         gap: 15px; /* Add space between the items */
+        padding: 10px 0;
     }
 
     .nav-item {
-        padding: 15px 20px; /* Increase padding for better touch interaction */
+        padding: 8px 10px; /* Increase padding for better touch interaction */
         width: 100%; /* Make the tabs stretch across the width */
         text-align: center; /* Center text for vertical layout */
         font-size: 1rem;
@@ -555,6 +557,12 @@ progress::-moz-progress-bar {
         grid-template-columns: 1fr; /* Single column on smaller screens */
         padding: 10px; /* Reduce padding for compact screens */
         gap: 10px; /* Reduce gap between sections */
+    }
+
+    .tab-content {
+        padding: 15px; /* Reduce padding for smaller screens */
+        border-radius: 8px; /* Slightly smaller rounded corners */
+        font-size: 0.9rem; /* Slightly smaller font size */
     }
 
     .footer {
@@ -590,12 +598,24 @@ progress::-moz-progress-bar {
         height: 40px;
     }
 
-    .item-details {
-        font-size: 0.7rem;
+    /* Side Panel */
+    .side-panel {
+        width: 250px; /* Narrower side panel */
+        padding: 15px;
     }
 
-    .item-name {
-        font-size: 0.9rem;
+    .side-panel-header {
+        font-size: 1rem; /* Smaller font size for side panel header */
+    }
+
+    .item-details-icon {
+        width: 80%; /* Reduce image size in side panel */
+    }
+
+    /* Footer Navigation */
+    .footer-nav {
+        flex-direction: column; /* Stack buttons and text */
+        gap: 10px;
     }
 }
 
@@ -604,11 +624,12 @@ progress::-moz-progress-bar {
     .nav-list {
         flex-direction: column; /* Stack navigation items */
         gap: 15px; /* Add more spacing between items */
+        align-items: stretch; /* Fill available width */
     }
 
     .nav-item {
         font-size: 0.9rem; /* Reduce font size for compact view */
-        padding: 10px 15px; /* Adjust padding for touch-friendly interaction */
+        padding: 6px 8px; /* Compact padding */
     }
 
     /* Header */
@@ -629,8 +650,10 @@ progress::-moz-progress-bar {
     }
 
     .tab-content {
-        padding: 10px; /* Reduce section padding */
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        padding: 10px; /* Further reduce padding */
+        border-radius: 5px; /* Smaller rounded corners */
+        font-size: 0.8rem; /* Smaller font size */
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.3); /* Subtle glow for smaller devices */
     }
 
     /* Tab Content */
@@ -686,12 +709,31 @@ progress::-moz-progress-bar {
         height: 35px;
     }
 
-    .item-details {
-        font-size: 0.6rem;
+
+    /* Side Panel */
+    .side-panel {
+        width: 200px; /* Narrow side panel for mobile */
+        padding: 10px;
     }
 
-    .item-name {
-        font-size: 0.8rem;
+    .side-panel-header {
+        font-size: 0.8rem; /* Smaller header text */
+    }
+
+    .item-details-icon {
+        width: 100%; /* Full width for smaller images */
+    }
+
+    /* Footer Navigation */
+    .footer-nav {
+        flex-direction: column; /* Stack navigation buttons */
+        text-align: center; /* Center-align text */
+        gap: 8px; /* Compact spacing */
+    }
+
+    .pip-boy-button {
+        font-size: 0.8rem; /* Smaller button text */
+        padding: 6px 12px; /* Compact padding */
     }
 }
 

@@ -32,6 +32,18 @@
             </nav>
         </header>
 
+        <!-- Detailed Item in a Side Panel -->
+        <div id="item-details-panel" class="side-panel hidden">
+            <div class="side-panel-header">
+                <h2 class="item-details-name"></h2>
+                <button id="close-panel" class="close-button">&times;</button>
+            </div>
+            <img src="" alt="Item Image" class="item-details-icon">
+            <p class="item-details-description"></p>
+            <p class="item-details-weight"></p>
+            <p class="item-details-value"></p>
+        </div>
+
         <main class="main-content">
             <section id="stats" class="tab-content active">
                 <h1>Stats</h1>
@@ -113,18 +125,6 @@
                             <p class="item-weight">Weight: 3.0</p>
                             <p class="item-value">Value: 10</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Detailed Item View Modal -->
-                <div id="item-modal" class="modal hidden">
-                    <div class="modal-content">
-                        <span class="close-button">&times;</span>
-                        <h2 class="item-modal-name"></h2>
-                        <img src="" alt="Item Image" class="item-modal-icon">
-                        <p class="item-modal-description"></p>
-                        <p class="item-modal-weight"></p>
-                        <p class="item-modal-value"></p>
                     </div>
                 </div>
             </section>
