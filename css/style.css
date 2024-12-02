@@ -51,3 +51,41 @@ h1, h2, h3, h4, h5, h6 {
 body {
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect */
 }
+
+/* Navigation Bar Styling */
+.navbar {
+    background-color: #000; /* Black background for retro theme */
+    border-bottom: 2px solid #0f0; /* Neon green border for emphasis */
+    padding: 10px 20px;
+    position: fixed; /* Fixed at the top */
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-around; /* Space tabs evenly */
+    list-style: none;
+}
+
+.nav-item {
+    font-size: 1.2rem;
+    color: #0f0; /* Neon green text for retro theme */
+    text-decoration: none;
+    text-transform: uppercase; /* Make text uppercase for retro feel */
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.nav-item:hover {
+    color: #fff; /* Change text to white on hover */
+    background-color: rgba(0, 255, 0, 0.2); /* Add a slight glow effect */
+    border-radius: 5px;
+}
+
+.nav-item.active {
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Add glow effect to active tab */
+    border-bottom: 2px solid #0f0; /* Highlight active tab */
+}
+
