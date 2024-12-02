@@ -25,4 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
     })
+
+    document.querySelectorAll('progress').forEach((progressBar) => {
+        // Get the current value and max value
+        const value = progressBar.value;
+        const max = progressBar.max;
+    
+        // Calculate the percentage width
+        const percentage = (value / max) * 100 + '%';
+    
+        // Set the custom property for animation
+        progressBar.style.setProperty('--progress-value', percentage);
+    });
 })

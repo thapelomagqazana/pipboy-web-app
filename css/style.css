@@ -187,12 +187,23 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 5px;
 }
 
+/* Keyframes for Progress Bar Animation */
+@keyframes fill {
+    from {
+        width: 0;
+    }
+    to {
+        width: var(--progress-value);
+    }
+}
+
 /* Progress Bar Styling */
 progress {
     width: 80%; /* Full-width progress bar */
     height: 20px; /* Height of the bar */
     -webkit-appearance: none; /* Remove default styling */
-    appearance: none; /* Remove default styling */
+    appearance: none;
+    position: relative;
 }
 
 progress::-webkit-progress-bar {
@@ -201,16 +212,21 @@ progress::-webkit-progress-bar {
     border-radius: 5px;
 }
 
+/* Foreground (Fill) Styling */
 progress::-webkit-progress-value {
     background-color: #0f0; /* Neon green fill */
     border-radius: 5px; /* Rounded edges for fill */
     box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect for fill */
+    animation: fill 1s ease-in-out forwards; /* Apply animation */
+    width: var(--progress-value); /* Custom property for animation */
 }
 
 progress::-moz-progress-bar {
     background-color: #0f0; /* Neon green fill */
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect for fill */
+    animation: fill 1s ease-in-out forwards;
+    width: var(--progress-value);
 }
 
 /* Responsive Design */
