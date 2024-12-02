@@ -37,4 +37,34 @@ document.addEventListener("DOMContentLoaded", () => {
         // Set the custom property for animation
         progressBar.style.setProperty('--progress-value', percentage);
     });
+
+    // Create a tooltip element
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    document.body.appendChild(tooltip);
+
+    // Add event listeners to each stat label
+    document.querySelectorAll('.stat label').forEach((label) => {
+        label.addEventListener('mouseenter', (e) => {
+            const tooltipText = label.getAttribute('data-tooltip');
+            tooltip.textContent = tooltipText; // Set the tooltip text
+            tooltip.classList.add('visible');
+
+            // Position the tooltip
+            const rect = label.getBoundingClientRect();
+            tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
+            tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight - 5}px`; // Adjust position above the label
+        });
+
+        label.addEventListener('mousemove', (e) => {
+            // Update position on mouse move for smoother interaction
+            tooltip.style.left = `${e.pageX}px`;
+            tooltip.style.top = `${e.pageY - tooltip.offsetHeight - 10}px`;
+        });
+
+        label.addEventListener('mouseleave', () => {
+            tooltip.classList.remove('visible');
+        });
+    });
+
 })

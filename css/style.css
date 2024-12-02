@@ -229,6 +229,30 @@ progress::-moz-progress-bar {
     width: var(--progress-value);
 }
 
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    color: #0f0; /* Neon green text */
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glowing effect */
+    visibility: hidden; /* Hide by default */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000; /* Ensure tooltip is above other elements */
+    max-width: 200px; /* Ensure tooltips don't overflow on small screens */
+    word-wrap: break-word; /* Break long tooltip text for better fit */
+}
+
+/* Show Tooltip */
+.tooltip.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
@@ -261,6 +285,12 @@ progress::-moz-progress-bar {
 
     .stat label {
         font-size: 1rem; /* Adjust font size for compact screens */
+    }
+
+    .tooltip {
+        font-size: 0.7rem; /* Slightly smaller text for compact view */
+        padding: 5px 8px; /* Reduce padding */
+        max-width: 180px; /* Constrain width further for smaller screens */
     }
 }
 
@@ -329,6 +359,12 @@ progress::-moz-progress-bar {
     progress::-webkit-progress-value {
         border-radius: 3px; /* Match smaller bar radius */
         box-shadow: 0 0 3px rgba(0, 255, 0, 0.8); /* Adjust glow for smaller size */
+    }
+
+    .tooltip {
+        font-size: 0.6rem; /* Further reduce text size */
+        padding: 4px 6px; /* Minimal padding for compact view */
+        max-width: 160px; /* Constrain width for small screens */
     }
 }
 
