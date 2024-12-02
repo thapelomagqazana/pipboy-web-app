@@ -123,4 +123,67 @@ document.addEventListener("DOMContentLoaded", () => {
             mapTooltip.classList.remove("visible");
         });
     });
+
+    const svg = document.querySelector(".interactive-map");
+    let isPanning = false;
+    let startPoint = { x: 0, y: 0 };
+    let transform = { x: 0, y: 0, scale: 1 };
+
+    // Mouse down to start panning
+    svg.addEventListener("mousedown", (event) => {
+        isPanning = true;
+        startPoint = { x: event.clientX, y: event.clientY };
+    });
+
+    // Mouse move to pan
+    svg.addEventListener("mousemove", (event) => {
+        if (!isPanning) return;
+
+        const dx = event.clientX - startPoint.x;
+        const dy = event.clientY - startPoint.y;
+
+        startPoint = { x: event.clientX, y: event.clientY };
+        transform.x += dx / transform.scale; // Adjust for zoom level
+        transform.y += dy / transform.scale;
+
+        applyTransform();
+    });
+
+    // Mouse up to stop panning
+    svg.addEventListener("mouseup", () => {
+        isPanning = false;
+    });
+
+    // Mouse leave to stop panning
+    svg.addEventListener("mouseleave", () => {
+        isPanning = false;
+    });
+
+    // Scroll to zoom
+    svg.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        const scaleAmount = 0.1;
+        const scaleFactor = event.deltaY > 0 ? 1 - scaleAmount : 1 + scaleAmount;
+
+        const rect = svg.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+
+        // Adjust for zoom level
+        transform.x -= (mouseX / transform.scale) * (1 - scaleFactor);
+        transform.y -= (mouseY / transform.scale) * (1 - scaleFactor);
+
+        transform.scale *= scaleFactor;
+        transform.scale = Math.max(0.5, Math.min(5, transform.scale)); // Restrict zoom levels
+
+        applyTransform();
+    });
+
+    // Apply the transform to the SVG
+    function applyTransform() {
+        svg.setAttribute(
+            "viewBox",
+            `${-transform.x} ${-transform.y} ${500 / transform.scale} ${500 / transform.scale}`
+        );
+    }
 });
