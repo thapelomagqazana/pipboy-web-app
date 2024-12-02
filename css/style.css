@@ -29,10 +29,11 @@ html, body {
 
     /* Add CRT scanline effect */
     background-image: 
-    linear-gradient(
-        rgba(0, 0, 0, 0.7) 50%, 
-        rgba(0, 255, 0, 0.1) 50%
-    );
+        repeating-linear-gradient(
+            rgba(0, 0, 0, 0.2) 0px,
+            rgba(0, 0, 0, 0.2) 1px,
+            rgba(0, 255, 0, 0.02) 2px
+        );
     background-size: 100% 4px;
     background-repeat: repeat;
 }
@@ -119,17 +120,25 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hide all tab contents by default */
 .tab-content {
-    display: none; /* Hide all sections by default */
     text-align: center; /* Center-align text for sections */
     padding: 20px;
     border: 2px solid #0f0; /* Neon green border for sections */
     border-radius: 10px; /* Rounded corners for sections */
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Subtle glowing shadow */
+    opacity: 0; /* Start with full transparency */
+    visibility: hidden; /* Hide from screen readers and prevent interaction */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Smooth fade transitions */
+    position: absolute; /* Ensure tab contents do not overlap */
+    width: 100%; /* Full width of the container */
+    top: 0;
 }
 
 /* Show the active tab content */
 .tab-content.active {
-    display: block;
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make visible */
+    position: relative; /* Position active tab correctly */
+    z-index: 1; /* Ensure active tab is on top */
 }
 
 /* Utility Classes */
@@ -150,6 +159,8 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px; /* Padding around the container */
     height: 100%; /* Full height for main content */
     overflow-y: auto; /* Enable vertical scrolling if content exceeds container height */
+    position: relative; /* For absolute-positioned tab contents */
+    overflow: hidden; /* Avoid overflow from hidden tabs */
 }
 
 /* Footer */

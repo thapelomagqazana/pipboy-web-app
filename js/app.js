@@ -15,13 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
         navItem.addEventListener('click', (event) => {
             event.preventDefault();
 
-            // Remove active classes
+            // Remove active class from all nav items and tab content
             navItems.forEach(item => item.classList.remove('active'));
-            tabContent.forEach(content => content.classList.remove('active'));
+            tabContent.forEach(content => {
+                content.classList.remove('active');
+            });
 
-            // Add active class to clicked tab and its content
-            navItem.classList.add("active");
-            document.getElementById(navItem.getAttribute('href').substring(1)).classList.add("active");
+            // Add active class to clicked nav item
+            navItem.classList.add('active');
+
+            // Get target tab by ID
+            const targetId = navItem.getAttribute('href').substring(1);
+            const targetTab = document.getElementById(targetId);
+
+            // Apply active class to the target tab for fade-in effect
+            setTimeout(() => {
+                targetTab.classList.add('active');
+            }, 10); // Small delay to ensure smooth transition
         });
     });
 
