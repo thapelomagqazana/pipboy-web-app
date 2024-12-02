@@ -115,12 +115,66 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Detailed Item View Modal -->
+                <div id="item-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close-button">&times;</span>
+                        <h2 class="item-modal-name"></h2>
+                        <img src="" alt="Item Image" class="item-modal-icon">
+                        <p class="item-modal-description"></p>
+                        <p class="item-modal-weight"></p>
+                        <p class="item-modal-value"></p>
+                    </div>
+                </div>
             </section>
     
             <section id="map" class="tab-content">
                 <h1>Map</h1>
-                <p>Map content goes here.</p>
-                <!-- Add map content here -->
+                <div class="map-container">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 500 500"
+                        class="interactive-map"
+                    >
+                        <!-- Background Rectangle -->
+                        <rect
+                            x="0"
+                            y="0"
+                            width="500"
+                            height="500"
+                            fill="black"
+                            stroke="#0f0"
+                            stroke-width="2"
+                        />
+                        <!-- Map Regions -->
+                        <circle
+                            cx="100"
+                            cy="150"
+                            r="30"
+                            fill="#0f0"
+                            class="map-region"
+                            data-tooltip="Region 1: Starting Area"
+                        />
+                        <circle
+                            cx="300"
+                            cy="200"
+                            r="40"
+                            fill="#0f0"
+                            class="map-region"
+                            data-tooltip="Region 2: Danger Zone"
+                        />
+                        <circle
+                            cx="400"
+                            cy="350"
+                            r="35"
+                            fill="#0f0"
+                            class="map-region"
+                            data-tooltip="Region 3: Safe Haven"
+                        />
+                    </svg>
+                    <p class="map-instructions">Hover over the regions to explore.</p>
+                </div>
             </section>
     
             <section id="radio" class="tab-content">
