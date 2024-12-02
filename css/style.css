@@ -12,6 +12,7 @@ html, body {
     line-height: 1.5;
     background-color: #000; /* Black background for retro theme */
     color: #0f0; /* Neon green text for retro theme */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Neon glow effect */
 }
 
 img, picture, video, canvas {
@@ -45,11 +46,6 @@ button {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-}
-
-/* Custom Reset for Retro Look */
-body {
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect */
 }
 
 /* Navigation Bar Styling */
@@ -88,4 +84,30 @@ body {
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Add glow effect to active tab */
     border-bottom: 2px solid #0f0; /* Highlight active tab */
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column; /* Stack tabs vertically */
+        align-items: center; /* Center-align the items */
+        gap: 15px; /* Add space between the items */
+    }
+
+    .nav-item {
+        padding: 15px 20px; /* Increase padding for better touch interaction */
+        width: 100%; /* Make the tabs stretch across the width */
+        text-align: center; /* Center text for vertical layout */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 5px 10px; /* Reduce padding for smaller screens */
+    }
+
+    .nav-item {
+        font-size: 1rem; /* Decrease font size for smaller screens */
+    }
+}
+
 
