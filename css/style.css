@@ -130,15 +130,19 @@ h1, h2, h3, h4, h5, h6 {
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Smooth fade transitions */
     position: absolute; /* Ensure tab contents do not overlap */
     width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    overflow-y: auto; /* Enable vertical scrolling */
     top: 0;
+    left: 0;
 }
 
 /* Show the active tab content */
 .tab-content.active {
     opacity: 1; /* Fully visible */
-    visibility: visible; /* Make visible */
-    position: relative; /* Position active tab correctly */
-    z-index: 1; /* Ensure active tab is on top */
+    visibility: visible; /* Allow interaction */
+    position: relative; /* Properly position active tab */
+    z-index: 1; /* Ensure it's on top */
+    overflow-y: auto; /* Allow scrolling for active tab */
 }
 
 /* Utility Classes */
@@ -163,15 +167,52 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden; /* Avoid overflow from hidden tabs */
 }
 
-/* Footer */
+/* Footer Styling */
 .footer {
-    background-color: #000;
+    background-color: #000; /* Retro black background */
     border-top: 2px solid #0f0; /* Neon green border */
-    text-align: center;
     padding: 10px;
+    text-align: center;
     font-size: 0.8rem;
+    color: #0f0;
+    font-family: 'Press Start 2P', monospace;
     position: sticky;
     bottom: 0;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* Pip-Boy Styled Buttons */
+.pip-boy-button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    color: #0f0; /* Neon green text */
+    background-color: transparent;
+    border: 2px solid #0f0; /* Neon green border */
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glowing effect */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Subtle outer glow */
+}
+
+.pip-boy-button:hover {
+    color: #000; /* Black text on hover */
+    background-color: #0f0; /* Neon green background */
+    text-shadow: none;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.6); /* Stronger glow */
+}
+
+.pip-boy-button:active {
+    transform: scale(0.95); /* Slight button press effect */
 }
 
 /* Stats Section Styling */

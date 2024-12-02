@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalWeight = modal.querySelector(".item-modal-weight");
     const modalValue = modal.querySelector(".item-modal-value");
     const closeButton = modal.querySelector(".close-button");
+    const prevButton = document.getElementById("nav-prev");
+    const nextButton = document.getElementById("nav-next");
 
     // Navigation Tab Logic
     navItems.forEach((navItem) => {
@@ -33,6 +35,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 targetTab.classList.add('active');
             }, 10); // Small delay to ensure smooth transition
         });
+    });
+
+    let activeIndex = Array.from(tabContent).findIndex((tab) =>
+        tab.classList.contains("active")
+    );
+
+    // Function to update active tab and nav item
+    function updateActiveTab(newIndex) {
+        tabContent.forEach((tab, index) => {
+            tab.classList.toggle("active", index === newIndex);
+        });
+        navItems.forEach((navItem, index) => {
+            navItem.classList.toggle("active", index === newIndex);
+        });
+        activeIndex = newIndex;
+    }
+
+    // Navigate to the previous tab
+    prevButton.addEventListener("click", () => {
+        const newIndex = activeIndex > 0 ? activeIndex - 1 : tabs.length - 1;
+        updateActiveTab(newIndex);
+    });
+
+    // Navigate to the next tab
+    nextButton.addEventListener("click", () => {
+        const newIndex = activeIndex < tabContent.length - 1 ? activeIndex + 1 : 0;
+        updateActiveTab(newIndex);
     });
 
     // Tooltip Logic
