@@ -119,7 +119,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hide all tab contents by default */
 .tab-content {
-    display: none;
+    display: none; /* Hide all sections by default */
+    text-align: center; /* Center-align text for sections */
+    padding: 20px;
+    border: 2px solid #0f0; /* Neon green border for sections */
+    border-radius: 10px; /* Rounded corners for sections */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Subtle glowing shadow */
 }
 
 /* Show the active tab content */
@@ -138,10 +143,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Main Content */
 .main-content {
-    overflow-y: auto; /* Enable scrolling for long content */
-    padding: 20px;
-    display: grid;
-    gap: 20px;
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-rows: auto; /* Allow rows to adjust dynamically */
+    grid-template-columns: 1fr; /* Single-column layout for sections */
+    gap: 20px; /* Space between sections */
+    padding: 20px; /* Padding around the container */
+    height: 100%; /* Full height for main content */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds container height */
 }
 
 /* Footer */
@@ -171,7 +179,9 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .main-content {
-        padding: 15px; /* Reduce padding for smaller screens */
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+        padding: 10px; /* Reduce padding for compact screens */
+        gap: 10px; /* Reduce gap between sections */
     }
 
     .footer {
@@ -201,14 +211,19 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Main Content Adjustments */
     .main-content {
-        padding: 10px; /* Reduce main content padding */
-        gap: 10px; /* Reduce gap between grid items */
+        padding: 5px; /* Reduce main content padding */
+        gap: 5px; /* Reduce gap between grid items */
     }
 
     /* Footer */
     .footer {
         font-size: 0.6rem; /* Further reduce font size for footer */
         padding: 6px; /* Minimize padding */
+    }
+
+    .tab-content {
+        padding: 10px; /* Reduce section padding */
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
     }
 
     /* Tab Content */
