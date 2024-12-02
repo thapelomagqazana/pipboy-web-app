@@ -163,6 +163,56 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
 }
 
+/* Stats Section Styling */
+#stats {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Glowing effect */
+    background-color: rgba(0, 0, 0, 0.8); /* Slight transparency for retro effect */
+}
+
+/* Stat Block Styling */
+.stat {
+    margin: 10px 0; /* Space between attributes */
+}
+
+
+.stat label {
+    font-size: 1.2rem;
+    color: #0f0; /* Neon green text */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect for labels */
+    display: block; /* Place label above the progress bar */
+    margin-bottom: 5px;
+}
+
+/* Progress Bar Styling */
+progress {
+    width: 80%; /* Full-width progress bar */
+    height: 20px; /* Height of the bar */
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none; /* Remove default styling */
+}
+
+progress::-webkit-progress-bar {
+    background-color: #222; /* Dark background for contrast */
+    border: 1px solid #0f0; /* Neon green border */
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #0f0; /* Neon green fill */
+    border-radius: 5px; /* Rounded edges for fill */
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect for fill */
+}
+
+progress::-moz-progress-bar {
+    background-color: #0f0; /* Neon green fill */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect for fill */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
@@ -189,7 +239,13 @@ h1, h2, h3, h4, h5, h6 {
         padding: 8px; /* Adjust padding for space efficiency */
     }
 
+    progress {
+        width: 100%; /* Full width on smaller screens */
+    }
 
+    .stat label {
+        font-size: 1rem; /* Adjust font size for compact screens */
+    }
 }
 
 @media (max-width: 480px) {
@@ -228,7 +284,35 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Tab Content */
     .tab-content h1 {
-        font-size: 1.2rem; /* Scale down headings for compact screens */
+        font-size: 1.5rem; /* Scale down headings for compact screens */
+    }
+
+    #stats {
+        padding: 10px; /* Reduce padding for smaller screens */
+        border-radius: 5px; /* Reduce border radius */
+    }
+
+    .stat {
+        margin: 8px 0; /* Adjust spacing between attributes */
+    }
+
+    .stat label {
+        font-size: 1rem; /* Reduce font size for smaller screens */
+    }
+
+    progress {
+        width: 100%; /* Use full width for progress bars */
+        height: 15px; /* Reduce height for compact appearance */
+    }
+
+    progress::-webkit-progress-bar {
+        border: 1px solid #0f0; /* Keep contrast for visibility */
+        border-radius: 3px; /* Adjust for smaller bars */
+    }
+
+    progress::-webkit-progress-value {
+        border-radius: 3px; /* Match smaller bar radius */
+        box-shadow: 0 0 3px rgba(0, 255, 0, 0.8); /* Adjust glow for smaller size */
     }
 }
 
