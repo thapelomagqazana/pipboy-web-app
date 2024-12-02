@@ -67,9 +67,11 @@
             
             <section id="inventory" class="tab-content">
                 <h1>Inventory</h1>
+                <input type="text" id="search-bar" placeholder="Search items...">
+
                 <div class="inventory-grid">
-                    <div class="inventory-item">
-                        <img src="./assets/images/rifle.png" alt="Item Icon" class="item-icon">
+                    <div class="inventory-item" data-name="Laser Rifle" data-weight="4.5" data-value="120">
+                        <img src="./assets/images/rifle.png" alt="Laser Rifle Icon" class="item-icon">
                         <div class="item-details">
                             <p class="item-name">Laser Rifle</p>
                             <p class="item-weight">Weight: 4.5</p>
@@ -77,7 +79,7 @@
                         </div>
                     </div>
 
-                    <div class="inventory-item">
+                    <div class="inventory-item" data-name="Combat Armor" data-weight="8.0" data-value="150">
                         <img src="./assets/images/armour.png" alt="Item Icon" class="item-icon">
                         <div class="item-details">
                             <p class="item-name">Combat Armor</p>
@@ -86,7 +88,7 @@
                         </div>
                     </div>
 
-                    <div class="inventory-item">
+                    <div class="inventory-item" data-name="Stimpak" data-weight="0.5" data-value="25">
                         <img src="./assets/images/military.png" alt="Item Icon" class="item-icon">
                         <div class="item-details">
                             <p class="item-name">Stimpak</p>
@@ -95,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="inventory-item">
+                    <div class="inventory-item" data-name="Energy Cell" data-weight="0.1" data-value="5">
                         <img src="assets/images/fuel-cell.png" alt="Item Icon" class="item-icon">
                         <div class="item-details">
                             <p class="item-name">Energy Cell</p>
@@ -104,7 +106,7 @@
                         </div>
                     </div>
 
-                    <div class="inventory-item">
+                    <div class="inventory-item" data-name="Scrap Metal" data-weight="3.0" data-value="10">
                         <img src="assets/images/steel-beam.png" alt="Item Icon" class="item-icon">
                         <div class="item-details">
                             <p class="item-name">Scrap Metal</p>

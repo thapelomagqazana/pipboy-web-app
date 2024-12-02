@@ -67,4 +67,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+   // Inventory Search Filter
+   const searchBar = document.getElementById("search-bar");
+   searchBar.addEventListener("keyup", () => {
+       const query = searchBar.value.toLowerCase();
+       const items = document.querySelectorAll(".inventory-item");
+
+       items.forEach(item => {
+           const name = item.getAttribute("data-name").toLowerCase();
+           const weight = item.getAttribute("data-weight");
+           const value = item.getAttribute("data-value");
+
+           if (
+               name.includes(query) ||
+               weight.includes(query) ||
+               value.includes(query)
+           ) {
+               item.style.display = "flex";
+           } else {
+               item.style.display = "none";
+           }
+       });
+   });
 })
