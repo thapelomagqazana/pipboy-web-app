@@ -522,13 +522,25 @@ progress::-moz-progress-bar {
     background-color: rgba(0, 0, 0, 0.8); /* Retro black background */
     cursor: pointer;
     transition: all 0.3s ease-in-out; /* Smooth hover effect */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glowing text */
 }
 
 .radio-station:hover {
     background-color: #0f0; /* Neon green highlight */
     color: #000; /* Invert text color for contrast */
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Glowing effect */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 1); /* Glowing effect */
     transform: scale(1.05); /* Slight zoom effect */
+}
+
+.radio-station:active {
+    transform: scale(0.95); /* Button press effect */
+}
+
+.currently-playing {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 1); /* Strong glow */
 }
 
 .radio-description {

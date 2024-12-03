@@ -242,16 +242,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const stations = document.querySelectorAll(".radio-station");
-    const radioDescriptionElement = document.querySelector(".radio-description");
+    const currentlyPlaying = document.getElementById("currently-playing");
+
+    // Create a new Audio object for the click sound
+    const clickSound = new Audio("assets/sounds/mixkit-radio-static-fx-2561.wav");
 
     stations.forEach((station) => {
         station.addEventListener("mouseenter", () => {
-            const description = station.getAttribute("data-description");
-            radioDescriptionElement.textContent = description;
+            clickSound.currentTime = 0; // Reset the sound for repeated plays
+            clickSound.play();
         });
 
-        station.addEventListener("mouseleave", () => {
-            radioDescriptionElement.textContent = "Hover over a station to see its description.";
+
+        // Add click event to update the currently playing section
+        station.addEventListener("click", () => {
+            const stationName = station.getAttribute("data-station");
+            currentlyPlaying.textContent = `Currently Playing: ${stationName}`;
         });
     });
 });
