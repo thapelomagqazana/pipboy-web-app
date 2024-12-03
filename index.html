@@ -175,8 +175,12 @@
                             data-tooltip="Quest 3: Deliver Supplies"
                             data-description="Deliver medical supplies to the nearby camp."
                         ></circle>
+
+                         <!-- User Location -->
+                        <circle id="user-location" cx="100" cy="200" r="10" fill="yellow" visibility="hidden" />
                     </svg>
-                    <p class="map-instructions">Click on a marker to view quest details.</p>
+                    <p class="map-instructions">Use scroll to zoom and drag to pan. Click on regions for details.</p>
+                    <p id="geolocation-status" class="map-instructions">Detecting your location...</p>
                 </div>
                 
                 <!-- Modal for Quest Details -->

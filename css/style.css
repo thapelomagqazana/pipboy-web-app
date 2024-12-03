@@ -459,7 +459,10 @@ progress::-moz-progress-bar {
     position: relative;
     text-align: center;
     margin: 20px auto;
-    max-width: 500px;
+    max-width: 90%;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .interactive-map {
@@ -467,10 +470,14 @@ progress::-moz-progress-bar {
     width: 100%;
     height: auto;
     background-color: #000;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Glowing effect */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
     border: 2px solid #0f0;
     border-radius: 10px;
+    cursor: grab; /* Indicate draggable content */
+    touch-action: pan-x pan-y; /* Enable panning */
 }
+
+
 
 .quest-marker:hover {
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); /* Glow effect */
@@ -537,6 +544,29 @@ progress::-moz-progress-bar {
     color: #0f0;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+#user-location {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.8)); /* Glow effect */
+    stroke: #fff; /* White outline for visibility */
+    stroke-width: 2;
+    animation: pulse 1.5s infinite; /* Pulsating animation */
+}
+
+@keyframes pulse {
+    0%, 100% {
+        r: 10; /* Default radius */
+    }
+    50% {
+        r: 15; /* Expanded radius */
+    }
+}
+
+.map-instructions {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    color: #0f0;
+    margin-top: 10px;
 }
 
 /* Radio Section Styling */

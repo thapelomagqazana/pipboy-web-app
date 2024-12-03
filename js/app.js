@@ -209,6 +209,107 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    const svg = document.getElementById("map");
+    let isPanning = false;
+    let startPoint = { x: 0, y: 0 };
+    let viewBox = { x: 0, y: 0, width: 1000, height: 1000 };
+    const zoomFactor = 1.2; // Zoom in/out factor
+
+    // Mouse events
+    svg.addEventListener("mousedown", (event) => {
+        isPanning = true;
+        startPoint = { x: event.clientX, y: event.clientY };
+        svg.style.cursor = "grabbing";
+    });
+
+    svg.addEventListener("mousemove", (event) => {
+        if (!isPanning) return;
+        const dx = (startPoint.x - event.clientX) * (viewBox.width / svg.clientWidth);
+        const dy = (startPoint.y - event.clientY) * (viewBox.height / svg.clientHeight);
+        viewBox.x += dx;
+        viewBox.y += dy;
+        startPoint = { x: event.clientX, y: event.clientY };
+        updateViewBox();
+    });
+
+    svg.addEventListener("mouseup", () => {
+        isPanning = false;
+        svg.style.cursor = "grab";
+    });
+
+    svg.addEventListener("mouseleave", () => {
+        isPanning = false;
+        svg.style.cursor = "grab";
+    });
+
+    // Scroll event for zooming
+    svg.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        const scale = event.deltaY < 0 ? 1 / zoomFactor : zoomFactor;
+        const mouseX = (event.offsetX / svg.clientWidth) * viewBox.width + viewBox.x;
+        const mouseY = (event.offsetY / svg.clientHeight) * viewBox.height + viewBox.y;
+        viewBox.width *= scale;
+        viewBox.height *= scale;
+        viewBox.x = mouseX - (mouseX - viewBox.x) * scale;
+        viewBox.y = mouseY - (mouseY - viewBox.y) * scale;
+        updateViewBox();
+    });
+
+    // Update SVG viewBox attribute
+    function updateViewBox() {
+        svg.setAttribute(
+            "viewBox",
+            `${viewBox.x} ${viewBox.y} ${viewBox.width} ${viewBox.height}`
+        );
+    }
+
+    const userLocationMarker = document.getElementById("user-location");
+    const statusElement = document.getElementById("geolocation-status");
+
+    // Mock coordinates to simulate real-world placement (example: map bounds)
+    const mapBounds = {
+        north: 90,
+        south: -90,
+        east: 180,
+        west: -180
+    };
+
+    const svgBounds = {
+        width: 1000,
+        height: 1000
+    };
+
+    // Convert geographical coordinates to SVG coordinates
+    function geoToSvg(lat, lon) {
+        const x = ((lon - mapBounds.west) / (mapBounds.east - mapBounds.west)) * svgBounds.width;
+        const y = svgBounds.height - ((lat - mapBounds.south) / (mapBounds.north - mapBounds.south)) * svgBounds.height;
+        return { x, y };
+    }
+
+    // Use the Geolocation API
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                const { x, y } = geoToSvg(latitude, longitude);
+
+                // Update the user's location marker
+                userLocationMarker.setAttribute("cx", x);
+                userLocationMarker.setAttribute("cy", y);
+                userLocationMarker.setAttribute("visibility", "visible");
+
+                // Update status message
+                statusElement.textContent = `Your location: ${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                statusElement.textContent = "Unable to retrieve your location.";
+            }
+        );
+    } else {
+        statusElement.textContent = "Geolocation is not supported by your browser.";
+    }
+
     const stations = document.querySelectorAll(".radio-station");
     const currentlyPlaying = document.getElementById("currently-playing");
 
