@@ -454,6 +454,7 @@ progress::-moz-progress-bar {
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Add a glowing effect */
 }
 
+/* Map Section styling */
 .map-container {
     position: relative;
     text-align: center;
@@ -462,36 +463,80 @@ progress::-moz-progress-bar {
 }
 
 .interactive-map {
-    cursor: grab; /* Indicate draggable content */
+    cursor: pointer;
     width: 100%;
     height: auto;
     background-color: #000;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Glowing effect */
     border: 2px solid #0f0;
     border-radius: 10px;
-    touch-action: pan-x pan-y;
 }
 
-.interactive-map:active {
-    cursor: grabbing; /* Change cursor when panning */
+.quest-marker:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); /* Glow effect */
 }
 
-.map-region {
-    transition: fill 0.2s ease-in-out, transform 0.2s ease-in-out;
-}
-
-.map-region:hover {
-    fill: white; /* Highlight region on hover */
-    transform: scale(1.1); /* Slight zoom effect */
-    filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8)); /* Glow effect */
-}
-
-.map-instructions {
-    margin-top: 10px;
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    color: #fff; /* White text */
     font-family: 'Press Start 2P', monospace;
     font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Glow effect */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.tooltip.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+.modal.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #222; /* Dark modal background */
+    border: 2px solid #0f0; /* Neon green border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Glowing effect */
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
     color: #0f0;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+    font-family: 'Press Start 2P', monospace;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #0f0;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 /* Radio Section Styling */
@@ -629,6 +674,25 @@ progress::-moz-progress-bar {
         flex-direction: column; /* Stack buttons and text */
         gap: 10px;
     }
+
+    .map-container {
+        margin: 10px auto;
+        max-width: 90%; /* Reduce width for smaller screens */
+    }
+
+    .interactive-map {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Subtle glow for smaller screens */
+        border-radius: 5px; /* Reduce rounding for compact design */
+    }
+
+    .modal-content {
+        width: 90%; /* Reduce modal width */
+        padding: 15px; /* Adjust padding */
+    }
+
+    .close-button {
+        font-size: 1.2rem; /* Reduce close button size */
+    }
 }
 
 @media (max-width: 480px) {
@@ -746,6 +810,31 @@ progress::-moz-progress-bar {
     .pip-boy-button {
         font-size: 0.8rem; /* Smaller button text */
         padding: 6px 12px; /* Compact padding */
+    }
+
+    .map-container {
+        margin: 5px auto;
+        max-width: 100%; /* Full-width for very small screens */
+    }
+
+    .interactive-map {
+        border-width: 1px; /* Thinner border */
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Subtle glow */
+    }
+
+    .modal-content {
+        font-size: 0.9rem; /* Smaller text size for modal */
+        padding: 10px; /* Compact padding */
+    }
+
+    .close-button {
+        font-size: 1rem; /* Further reduce close button size */
+        top: 5px;
+        right: 5px;
+    }
+
+    .quest-marker {
+        r: 10; /* Reduce marker size */
     }
 }
 

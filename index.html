@@ -147,34 +147,47 @@
                             stroke="#0f0"
                             stroke-width="2"
                         />
-                        <!-- Map Regions -->
+                        <!-- Quest Markers -->
                         <circle
                             cx="100"
                             cy="150"
-                            r="30"
-                            fill="#0f0"
-                            class="map-region"
-                            data-tooltip="Region 1: Starting Area"
-                        />
+                            r="15"
+                            fill="red"
+                            class="quest-marker"
+                            data-tooltip="Quest 1: Find the Lost Sword"
+                            data-description="Locate the ancient sword hidden in the forest."
+                        ></circle>
                         <circle
                             cx="300"
-                            cy="200"
-                            r="40"
-                            fill="#0f0"
-                            class="map-region"
-                            data-tooltip="Region 2: Danger Zone"
-                        />
+                            cy="250"
+                            r="15"
+                            fill="blue"
+                            class="quest-marker"
+                            data-tooltip="Quest 2: Defend the Village"
+                            data-description="Protect the village from an oncoming raid."
+                        ></circle>
                         <circle
                             cx="400"
-                            cy="350"
-                            r="35"
-                            fill="#0f0"
-                            class="map-region"
-                            data-tooltip="Region 3: Safe Haven"
-                        />
+                            cy="100"
+                            r="15"
+                            fill="yellow"
+                            class="quest-marker"
+                            data-tooltip="Quest 3: Deliver Supplies"
+                            data-description="Deliver medical supplies to the nearby camp."
+                        ></circle>
                     </svg>
-                    <p class="map-instructions">Hover over the regions to explore.</p>
+                    <p class="map-instructions">Click on a marker to view quest details.</p>
                 </div>
+                
+                <!-- Modal for Quest Details -->
+                <div id="quest-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close-button">&times;</span>
+                        <h2 class="quest-title"></h2>
+                        <p class="quest-description"></p>
+                    </div>
+                </div>
+                
             </section>
     
             <section id="radio" class="tab-content">

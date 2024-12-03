@@ -151,95 +151,63 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    const mapRegions = document.querySelectorAll(".map-region");
+    const questMarkers = document.querySelectorAll(".quest-marker");
     const mapTooltip = document.createElement("div");
     mapTooltip.className = "tooltip";
     document.body.appendChild(mapTooltip);
 
-    mapRegions.forEach((region) => {
-        region.addEventListener("mouseenter", (e) => {
-            const tooltipText = region.getAttribute("data-tooltip");
+    const modal = document.getElementById("quest-modal");
+    const modalTitle = modal.querySelector(".quest-title");
+    const modalDescription = modal.querySelector(".quest-description");
+    const modalCloseButton = modal.querySelector(".close-button");
+
+    // Show tooltip on hover
+    questMarkers.forEach((marker) => {
+        marker.addEventListener("mouseenter", (event) => {
+            const tooltipText = marker.getAttribute("data-tooltip");
             mapTooltip.textContent = tooltipText;
             mapTooltip.classList.add("visible");
 
-            // Position the tooltip
-            const rect = region.getBoundingClientRect();
+            const rect = marker.getBoundingClientRect();
             mapTooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
             mapTooltip.style.top = `${rect.top + window.scrollY - mapTooltip.offsetHeight - 5}px`;
         });
 
-        region.addEventListener("mousemove", (e) => {
-            mapTooltip.style.left = `${e.pageX}px`;
-            mapTooltip.style.top = `${e.pageY - mapTooltip.offsetHeight - 10}px`;
+        marker.addEventListener("mousemove", (event) => {
+            mapTooltip.style.left = `${event.pageX}px`;
+            mapTooltip.style.top = `${event.pageY - mapTooltip.offsetHeight - 10}px`;
         });
 
-        region.addEventListener("mouseleave", () => {
+        marker.addEventListener("mouseleave", () => {
             mapTooltip.classList.remove("visible");
         });
+
+        // Show modal on click
+        marker.addEventListener("click", () => {
+            modalTitle.textContent = marker.getAttribute("data-tooltip");
+            modalDescription.textContent = marker.getAttribute("data-description");
+            modal.classList.add("visible");
+        });
     });
 
-    const svg = document.querySelector(".interactive-map");
-    let isPanning = false;
-    let startPoint = { x: 0, y: 0 };
-    let transform = { x: 0, y: 0, scale: 1 };
-
-    // Mouse down to start panning
-    svg.addEventListener("mousedown", (event) => {
-        isPanning = true;
-        startPoint = { x: event.clientX, y: event.clientY };
+    // Close modal on close button
+    modalCloseButton.addEventListener("click", () => {
+        modal.classList.remove("visible");
     });
 
-    // Mouse move to pan
-    svg.addEventListener("mousemove", (event) => {
-        if (!isPanning) return;
-
-        const dx = event.clientX - startPoint.x;
-        const dy = event.clientY - startPoint.y;
-
-        startPoint = { x: event.clientX, y: event.clientY };
-        transform.x += dx / transform.scale; // Adjust for zoom level
-        transform.y += dy / transform.scale;
-
-        applyTransform();
+    // Close modal on clicking outside the modal content
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.classList.remove("visible");
+        }
     });
 
-    // Mouse up to stop panning
-    svg.addEventListener("mouseup", () => {
-        isPanning = false;
+    // Close modal on Escape key
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.classList.contains("visible")) {
+            modal.classList.remove("visible");
+        }
     });
-
-    // Mouse leave to stop panning
-    svg.addEventListener("mouseleave", () => {
-        isPanning = false;
-    });
-
-    // Scroll to zoom
-    svg.addEventListener("wheel", (event) => {
-        event.preventDefault();
-        const scaleAmount = 0.1;
-        const scaleFactor = event.deltaY > 0 ? 1 - scaleAmount : 1 + scaleAmount;
-
-        const rect = svg.getBoundingClientRect();
-        const mouseX = event.clientX - rect.left;
-        const mouseY = event.clientY - rect.top;
-
-        // Adjust for zoom level
-        transform.x -= (mouseX / transform.scale) * (1 - scaleFactor);
-        transform.y -= (mouseY / transform.scale) * (1 - scaleFactor);
-
-        transform.scale *= scaleFactor;
-        transform.scale = Math.max(0.5, Math.min(5, transform.scale)); // Restrict zoom levels
-
-        applyTransform();
-    });
-
-    // Apply the transform to the SVG
-    function applyTransform() {
-        svg.setAttribute(
-            "viewBox",
-            `${-transform.x} ${-transform.y} ${500 / transform.scale} ${500 / transform.scale}`
-        );
-    }
 
     const stations = document.querySelectorAll(".radio-station");
     const currentlyPlaying = document.getElementById("currently-playing");
